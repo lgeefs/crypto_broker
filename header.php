@@ -1,3 +1,10 @@
+<?php
+
+    session_start();
+    require_once('functions.php');
+
+?>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
 <html>
@@ -13,7 +20,6 @@
     <!--/Styles-->
 
     <!--Scripts-->
-    <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
     <script src='js/CryptoBroker.js'></script>
     <!--/Scripts-->
@@ -21,6 +27,9 @@
 </head>
 <body>
 
-<?php require_once('navbar.php'); ?>
+<?php 
+    require_once('navbar.php'); 
+?>
 
-<div class="container">
+<div class="container col-sm-12">
+    <div class='spacer-80'></div>
