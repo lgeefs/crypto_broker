@@ -16,7 +16,7 @@
     $coin_prices['ethcad'] = $coin_prices['ethusdt'] * $coin_prices['usdcad'];
     $coin_prices['btceth'] = $coin_prices['btccad'] / $coin_prices['ethcad'];
 
-    $total_cad_profits = 0;
+    $our_total_cad_profits = 0;
 
     foreach($accounts as $a) {
 
@@ -68,7 +68,7 @@
                 $cad_value = $coin_prices[$key] * $investment_quantity[$key] * $coin_prices['btccad'];
                 $cad_profit = ($cad_value - $cad_invy) * ((100 - intval($a['withdraw_percentage'])) / 100);
                 $our_cad_profit = ($cad_value * (intval($a['withdraw_percentage']) / 100));
-                $total_cad_profits += $our_cad_profit;
+                $our_total_cad_profits += $our_cad_profit;
                 echo "<td>$quantity"."$key</td>";
                 echo "<td>Investment: ".$btc_invy."btc ($".$cad_invy."CAD)</td>";
                 echo "<td>Value: ".$btc_value."btc ($".$cad_value."CAD)</td>";
@@ -81,8 +81,9 @@
 
     }
 
-    echo "<tr><td></td><td></td><td></td><td></td><td></td>"; //don't delete this line
-    echo "<td>Our Total Profit: $".$total_cad_profits."CAD</td></tr>"; 
+    echo "<tr><td></td><td></td><td></td><td></td>"; //don't delete this line
+    echo "<td></td>";
+    echo "<td>Our Total Profit: $".$our_total_cad_profits."CAD</td></tr>";
 
     echo "</table>";
 

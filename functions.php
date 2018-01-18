@@ -5,6 +5,11 @@
     $binanace_key = $binanace_ini['api_key'];
     $binanace_secret = $binanace_ini['api_secret'];
 
+    $quadrigaAPIUrl = "https://";
+    $quadriga_ini = parse_ini_file("../config/quadriga_api.ini");
+    $quadriga_key = $quadriga_ini['api_key'];
+    $quadriga_secret = $quadriga_ini['api_secret'];
+
     function getAccounts($query) {
 
         require('conn.php');
@@ -170,6 +175,31 @@
         $ch = curl_init();
 
         curl_setopt($ch, CURLOPT_URL, "$binanceAPIUrl/api/v1/ticker/24hr?symbol=$ticker");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+        
+        
+        //$headers = array();
+        //$headers[] = "Authorization: Bearer ".$_SESSION['api_key'];
+        //curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        
+        $result = curl_exec($ch);
+        if (curl_errno($ch)) {
+            return('Error:' . curl_error($ch));
+        }
+        curl_close ($ch);
+
+        return $result;
+
+    }
+
+    function getAllBinancePrices() {        
+
+        global $binanceAPIUrl;
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, "$binanceAPIUrl/api/v1/ticker/allPrices");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
         
